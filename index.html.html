@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iMentor Spotlight Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #00A7E1 0%, #003B71 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #00A7E1 0%, #003B71 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .form-content {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #00A7E1;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .helper-text {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .radio-group {
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .radio-option:hover {
+            border-color: #00A7E1;
+            background-color: #f0f8ff;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload-area:hover {
+            border-color: #00A7E1;
+            background-color: #f0f8ff;
+        }
+
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+
+        .upload-label {
+            color: #00A7E1;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            color: #00A7E1;
+            font-weight: 500;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 35px 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #00A7E1 0%, #003B71 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 167, 225, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .success-message h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .info-box {
+            background: #e8f6fc;
+            border-left: 4px solid #00A7E1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h3 {
+            color: #003B71;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .info-box .example {
+            font-style: italic;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>iMentor Spotlight Series</h1>
+            <p>Thank you for being part of our iMentor community! Share your story to inspire others.</p>
+        </div>
+
+        <div class="form-content">
+            <form id="mentorForm">
+                
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" name="fullName" required placeholder="e.g., Dr. Ahmed Hassan">
+                </div>
+
+                <div class="form-group">
+                    <label>Professional Title/Position <span class="required">*</span></label>
+                    <input type="text" name="title" required placeholder="e.g., Senior Product Manager at Google | Startup Mentor">
+                    <div class="helper-text">Please include your current role and organization</div>
+                </div>
+
+                <div class="form-group">
+                    <label>LinkedIn Profile URL <span class="required">*</span></label>
+                    <input type="url" name="linkedin" required placeholder="https://www.linkedin.com/in/yourname">
+                </div>
+
+                <hr class="divider">
+
+                <div class="form-group">
+                    <label>Professional Bio <span class="required">*</span></label>
+                    <textarea name="bio" required placeholder="Write a brief bio about your background, expertise, and why you mentor with iMentor..."></textarea>
+                    <div class="helper-text">100-150 words. Include your background, expertise, why you mentor, and notable achievements.</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Choose Your Quote Topic <span class="required">*</span></label>
+                    <div class="info-box">
+                        <h3>Quote Guidelines:</h3>
+                        <p>Describe the impact you've seen in the startups you've mentored with mentioning their name.</p>
+                        <p class="example">For example: "Working with ElDars, we turned one revenue idea into four through sharper financial strategy."</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Your Quote <span class="required">*</span></label>
+                    <textarea name="quote" required placeholder="Share your authentic, inspiring quote here..."></textarea>
+                    <div class="helper-text">50-100 words. Be authentic and specific. <strong>Note: If your quote is longer than 25 words, we will summarize it directly without getting back to you.</strong></div>
+                </div>
+
+                <hr class="divider">
+
+                <div class="form-group">
+                    <label>Startups You've Mentored <span class="required">*</span></label>
+                    <textarea name="startupsNames" required placeholder="e.g., ElDars, Startup Name 2, Startup Name 3"></textarea>
+                    <div class="helper-text">List the names of startups you've mentored through iMentor</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Startups You've Mentored</label>
+                    <input type="number" name="startupsCount" min="0" placeholder="e.g., 5">
+                    <div class="helper-text">Optional - Approximate number is fine</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Professional Photo (Optional)</label>
+                    <div class="file-upload-area" onclick="document.getElementById('photoFile').click()">
+                        <input type="file" id="photoFile" name="photo" accept="image/jpeg,image/png">
+                        <div class="upload-label">📷 Click to upload your professional headshot</div>
+                        <div class="helper-text" style="margin-top: 10px;">High-resolution JPG or PNG. If not provided, we'll use your LinkedIn photo.</div>
+                        <div class="file-name" id="fileName"></div>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <div class="form-group">
+                    <label>Permission to Feature <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="permYes" name="permission" value="yes" required>
+                            <label for="permYes">Yes, I give GSF permission to feature my name, photo, quote, and bio on social media and marketing materials</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="permNo" name="permission" value="no">
+                            <label for="permNo">No, please contact me first</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Comments or Special Requests</label>
+                    <textarea name="comments" placeholder="Any specific details you'd like us to know?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Your Information</button>
+
+                <div class="success-message" id="successMsg">
+                    <h3>✅ Thank you for your submission!</h3>
+                    <p>We'll review your information and reach out if we need any clarifications.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Powered by GSF iMentor Program</p>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwIWa_7tgML3SQ0lrauq2TT_AyzLiH04dMrUjxNZwVWprTjamyvZE3aDo4ew-ta6wT2gw/exec';
+
+        document.getElementById('photoFile').addEventListener('change', function(e) {
+            const name = e.target.files[0]?.name;
+            if (name) {
+                document.getElementById('fileName').textContent = 'Selected: ' + name;
+            }
+        });
+
+        document.getElementById('mentorForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const btn = this.querySelector('.submit-btn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Submitting...';
+            
+            const data = {
+                fullName: this.fullName.value,
+                title: this.title.value,
+                linkedin: this.linkedin.value,
+                bio: this.bio.value,
+                quoteTopic: 'impact',
+                quote: this.quote.value,
+                startupsNames: this.startupsNames.value,
+                startupsCount: this.startupsCount.value,
+                permission: this.permission.value,
+                comments: this.comments.value
+            };
+
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+
+                document.getElementById('successMsg').style.display = 'block';
+                window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+
+                setTimeout(() => {
+                    this.reset();
+                    document.getElementById('fileName').textContent = '';
+                    document.getElementById('successMsg').style.display = 'none';
+                    btn.disabled = false;
+                    btn.textContent = 'Submit Your Information';
+                }, 4000);
+
+            } catch (error) {
+                alert('Error submitting. Please try again.');
+                btn.disabled = false;
+                btn.textContent = 'Submit Your Information';
+            }
+        });
+    </script>
+</body>
+</html>
